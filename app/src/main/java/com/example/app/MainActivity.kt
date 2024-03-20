@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Пароли не совпадают!", Toast.LENGTH_LONG).show()
             } else {
                 val user = User(email, pass1)
-                user.sendPostRequest(email, pass1)
+                user.sendPostReg(email, pass1)
             }
         }
 

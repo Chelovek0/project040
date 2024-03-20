@@ -31,7 +31,7 @@ class SignIn : AppCompatActivity() {
                 Toast.makeText(this, "Заполните пустые поля!", Toast.LENGTH_LONG).show()
             } else {
                 val user = User(email, pass)
-                user.sendPostRequest(email, pass)
+                user.sendPostAuth(email, pass)
             }
         }
     }
