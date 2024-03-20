@@ -1,68 +1,31 @@
 package com.example.app
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.io.OutputStreamWriter
-import java.net.HttpURLConnection
-import java.net.URL
-import java.net.URLEncoder
 
+
+import okhttp3.*
+import java.io.IOException
 class User(val userName: String, val password: String) {
-    fun sendPostReg(userName:String, password:String) {
-
-        var reqParam = URLEncoder.encode("username", "UTF-8") + "=" + URLEncoder.encode(userName, "UTF-8")
-        reqParam += "&" + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(password, "UTF-8")
-        val mURL = URL("http://localhost:4444/register")
-
-        with(mURL.openConnection() as HttpURLConnection) {
-            // optional default is GET
-            requestMethod = "POST"
-
-            val wr = OutputStreamWriter(getOutputStream());
-            wr.write(reqParam);
-            wr.flush();
-
-            println("URL : $url")
-            println("Response Code : $responseCode")
-
-            BufferedReader(InputStreamReader(inputStream)).use {
-                val response = StringBuffer()
-
-                var inputLine = it.readLine()
-                while (inputLine != null) {
-                    response.append(inputLine)
-                    inputLine = it.readLine()
-                }
-                println("Response : $response")
+    fun sendPostReg(userName: String, password: String, callback: (String) -> Unit) {
+        val url = "http://localhost:4444/register"
+        val client = OkHttpClient()
+        val requestBody: RequestBody = FormBody.Builder()
+            .add("userName", userName)
+            .add("password", password)
+            .build()
+        val request: Request = Request.Builder()
+            .url(url)
+            .post(requestBody)
+            .build()
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                callback("Request failed: ${e.message}")
             }
-        }
-    }
-    fun sendPostAuth(userName:String, password:String) {
 
-        var reqParam = URLEncoder.encode("username", "UTF-8") + "=" + URLEncoder.encode(userName, "UTF-8")
-        reqParam += "&" + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(password, "UTF-8")
-        val mURL = URL("http://localhost:4444/auth")
-
-        with(mURL.openConnection() as HttpURLConnection) {
-            // optional default is GET
-            requestMethod = "POST"
-
-            val wr = OutputStreamWriter(getOutputStream());
-            wr.write(reqParam);
-            wr.flush();
-
-            println("URL : $url")
-            println("Response Code : $responseCode")
-
-            BufferedReader(InputStreamReader(inputStream)).use {
-                val response = StringBuffer()
-
-                var inputLine = it.readLine()
-                while (inputLine != null) {
-                    response.append(inputLine)
-                    inputLine = it.readLine()
-                }
-                println("Response : $response")
+            override fun onResponse(call: Call, response: Response) {
+                val responseData: String = response.body?.string() ?: "Empty response"
+                callback(responseData)
             }
-        }
+
+        })
     }
 }
+
