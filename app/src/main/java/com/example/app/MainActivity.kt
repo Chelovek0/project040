@@ -1,9 +1,11 @@
 package com.example.app
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
@@ -15,6 +17,12 @@ class MainActivity : AppCompatActivity() {
         val userPass1: EditText = findViewById(R.id.pass1_reg)
         val userPass2: EditText = findViewById(R.id.pass2_reg)
         val buttonReg: Button = findViewById(R.id.button_reg)
+        val move: TextView = findViewById(R.id.link_text)
+
+        move.setOnClickListener {
+            val intent = Intent(this, SignIn::class.java)
+            startActivity(intent)
+        }
 
         buttonReg.setOnClickListener {
 
