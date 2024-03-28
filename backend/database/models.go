@@ -7,6 +7,7 @@ import (
 	"fmt"
 
 	_ "github.com/lib/pq"
+	"golang.org/x/crypto/bcrypt"
 )
 
 var (
@@ -38,25 +39,47 @@ func (d *DB) Connect() (*sql.DB, error) {
 	return db, nil
 }
 
-func (d *DB) Register(user *Users.NewUser) error {
+func (d *DB) Register(NewUser *Users.NewUser) (*Users.User, error) {
 	connection, err := d.Connect()
 	if err != nil {
-		return err
+		return nil, err
 	}
 	defer connection.Close()
-	err = d.ExistEmail(user.Email)
-	if err != nil {
-		return err
+
+	if err := NewUser.Valide(); err != nil {
+		return nil, err
 	}
 
-	query := fmt.Sprintf("INSERT INTO users VALUES ('%s', '%s')", user.Email, user.Password)
+	err = d.ExistEmail(NewUser.Email)
+	if err != nil {
+		return nil, err
+	}
+
+	bytes, err := bcrypt.GenerateFromPassword([]byte(NewUser.Password), 14)
+	if err != nil {
+		return nil, err
+	}
+	password_hash := string(bytes)
+
+	bytes, err = bcrypt.GenerateFromPassword([]byte(NewUser.Email+NewUser.Password), 14)
+	if err != nil {
+		return nil, err
+	}
+	auth_hash := string(bytes)
+
+	query := fmt.Sprintf("INSERT INTO users VALUES ('%s', '%s', '%s')", NewUser.Email, password_hash, auth_hash)
 	rows, err := connection.Query(query)
 	if err != nil {
-		return err
+		return nil, err
 	}
 	defer rows.Close()
 
-	return nil
+	user := &Users.User{
+		Email:        NewUser.Email,
+		PasswordHash: password_hash,
+	}
+
+	return user, nil
 }
 
 func (d *DB) ExistEmail(email string) error {
@@ -78,4 +101,8 @@ func (d *DB) ExistEmail(email string) error {
 	}
 
 	return nil
+}
+
+func (d *DB) InitTables() {
+
 }

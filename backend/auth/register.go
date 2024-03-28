@@ -8,23 +8,36 @@ import (
 	"net/http"
 )
 
+type Response struct {
+	Hash string `json:"hash_auth"`
+}
+
 var database *db.DB
 
 func Register(w http.ResponseWriter, r *http.Request) {
-	var user Users.NewUser
-	err := json.NewDecoder(r.Body).Decode(&user)
+	w.Header().Set("Content-Type", "application/json")
+	var NewUser Users.NewUser
+	err := json.NewDecoder(r.Body).Decode(&NewUser)
 	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
 
-	err = database.Register(&user)
+	User, err := database.Register(&NewUser)
 
-	if errors.Is(err, db.ErrExistEmail) {
+	response := &Response{}
+
+	if errors.Is(err, db.ErrExistEmail) || errors.Is(err, Users.ErrInvalidUser) {
 		w.WriteHeader(http.StatusBadRequest)
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
 	} else if err == nil {
-		w.WriteHeader(http.StatusOK)
+		w.WriteHeader(http.StatusCreated)
+		response.Hash = User.PasswordHash
 	} else {
 		panic(err)
 	}
+
+	json.NewEncoder(w).Encode(response)
 }
