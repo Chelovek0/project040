@@ -9,7 +9,7 @@ var (
 type NewUser struct {
 	Email    string `json:"email"`
 	Password string `json:"password"`
-	Hash     string `json:"hash"`
+	Hash     string `json:"hash_auth"`
 }
 
 func (u *NewUser) Valide() error {
@@ -20,8 +20,9 @@ func (u *NewUser) Valide() error {
 }
 
 type User struct {
-	Email        string `json:"email"`
-	PasswordHash string `json:"password_hash"`
+	Email        string `json:"email" pg:"email"`
+	PasswordHash string `json:"password_hash" pg:"password_hash"`
+	Hash         string `json:"hash_auth" pg:"auth_hash"`
 }
 
 func (u *User) Valide() error {

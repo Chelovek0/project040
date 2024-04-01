@@ -5,13 +5,14 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
-
 	_ "github.com/lib/pq"
-	"golang.org/x/crypto/bcrypt"
+	pshash "github.com/vzglad-smerti/password_hash"
 )
 
 var (
-	ErrExistEmail = errors.New("email is already busy")
+	ErrExistEmail    = errors.New("email is already busy")
+	ErrWrongPassword = errors.New("password is wrong")
+	ErrUndetected    = errors.New("Undetected error")
 )
 
 const (
@@ -55,19 +56,19 @@ func (d *DB) Register(NewUser *Users.NewUser) (*Users.User, error) {
 		return nil, err
 	}
 
-	bytes, err := bcrypt.GenerateFromPassword([]byte(NewUser.Password), 14)
+	bytes, err := pshash.Hash(NewUser.Password)
 	if err != nil {
 		return nil, err
 	}
-	password_hash := string(bytes)
+	passwordHash := string(bytes)
 
-	bytes, err = bcrypt.GenerateFromPassword([]byte(NewUser.Email+NewUser.Password), 14)
+	bytes, err = pshash.Hash(NewUser.Email + NewUser.Password)
 	if err != nil {
 		return nil, err
 	}
-	auth_hash := string(bytes)
+	authHash := string(bytes)
 
-	query := fmt.Sprintf("INSERT INTO users VALUES ('%s', '%s', '%s')", NewUser.Email, password_hash, auth_hash)
+	query := fmt.Sprintf("INSERT INTO users VALUES ('%s', '%s', '%s')", NewUser.Email, passwordHash, authHash)
 	rows, err := connection.Query(query)
 	if err != nil {
 		return nil, err
@@ -76,7 +77,7 @@ func (d *DB) Register(NewUser *Users.NewUser) (*Users.User, error) {
 
 	user := &Users.User{
 		Email:        NewUser.Email,
-		PasswordHash: password_hash,
+		PasswordHash: passwordHash,
 	}
 
 	return user, nil
@@ -92,6 +93,7 @@ func (d *DB) ExistEmail(email string) error {
 	query := "SELECT EXISTS ( SELECT 1 FROM users WHERE email = $1 )"
 	var exists bool
 	err = connection.QueryRow(query, email).Scan(&exists)
+
 	if err != nil {
 		return err
 	}
@@ -101,6 +103,41 @@ func (d *DB) ExistEmail(email string) error {
 	}
 
 	return nil
+}
+
+func (d *DB) Login(NewUser *Users.NewUser) (*Users.User, error) {
+	var psVerify bool
+	var emailBD, hashBD, hashPasswordBD string
+	connection, err := d.Connect()
+	if err != nil {
+		return nil, err
+	}
+	defer connection.Close()
+
+	query := "SELECT * FROM users WHERE email = $1"
+
+	err = connection.QueryRow(query, NewUser.Email).Scan(&emailBD, &hashPasswordBD, &hashBD)
+	if err != nil {
+		return nil, ErrWrongPassword
+	}
+
+	User := &Users.User{
+		Email:        emailBD,
+		PasswordHash: hashPasswordBD,
+		Hash:         hashBD,
+	}
+
+	psVerify, err = pshash.Verify(User.PasswordHash, NewUser.Password)
+
+	if err != nil {
+		return nil, err
+	}
+
+	if !psVerify {
+		return nil, ErrWrongPassword
+	}
+
+	return User, nil
 }
 
 func (d *DB) InitTables() {

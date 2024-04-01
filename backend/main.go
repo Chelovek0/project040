@@ -8,5 +8,5 @@ import (
 func main() {
 	http.HandleFunc("/register", auth.Register)
 	http.HandleFunc("/login", auth.Login)
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":32673", nil)
 }
