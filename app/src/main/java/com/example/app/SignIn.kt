@@ -37,13 +37,16 @@ class SignIn : AppCompatActivity() {
                 val user = User(email, pass)
                 user.sendPostLog(email, pass) {response ->
                     val hash = response[0]
+                    val code = response[1]
                     println("Response: $hash")
+                    println("$code")
                     if(response[1] == "1"){
 
-                        val hash_saver = this.getSharedPreferences("hash", Context.MODE_PRIVATE)
+                        val hash_saver = this.getSharedPreferences("hash", Context.MODE_PRIVATE)!!
                         val saver = hash_saver.edit()
                         saver.putString("hash", response[0])
                         saver.apply()
+
 
                         val intent = Intent(this, MainActivity2::class.java)
                         startActivity(intent)

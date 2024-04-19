@@ -2,6 +2,7 @@ package com.example.app
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -34,14 +35,14 @@ class MainActivity2 : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-//        val sharedPref = this.getSharedPreferences("my_pref", Context.MODE_PRIVATE)
-//        val hash_value = sharedPref.getString("hash", "") ?: ""
-//        if (hash_value == ""){
-//
-//            val intent = Intent(this, MainActivity::class.java)
-//            startActivity(intent)
-//
-//        }
+        val sharedPref = this.getSharedPreferences("hash", Context.MODE_PRIVATE)
+        val hash_value = sharedPref.getString("hash", "")
+        if (hash_value == ""){
+
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+
+        }
 
     }
 

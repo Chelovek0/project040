@@ -57,6 +57,7 @@ class MainActivity : AppCompatActivity() {
                         saver.putString("hash", response[0])
                         saver.apply()
 
+
                         val intent = Intent(this, MainActivity2::class.java)
                         startActivity(intent)
                     }
