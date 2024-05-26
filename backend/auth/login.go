@@ -22,7 +22,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	User, err := database.Login(&NewUser)
 	if errors.Is(err, db.ErrWrongPassword) {
 		w.WriteHeader(http.StatusUnauthorized)
-		err = json.NewEncoder(w).Encode(response)
+		http.Error(w, err.Error(), http.StatusUnauthorized)
 		return
 	} else if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
