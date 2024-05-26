@@ -1,6 +1,7 @@
 package main
 
 import (
+	"api/app"
 	"api/auth"
 	"net/http"
 )
@@ -8,5 +9,6 @@ import (
 func main() {
 	http.HandleFunc("/register", auth.Register)
 	http.HandleFunc("/login", auth.Login)
+	http.HandleFunc("/info", app.Info)
 	http.ListenAndServe(":32673", nil)
 }
