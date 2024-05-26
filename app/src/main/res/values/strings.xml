@@ -6,7 +6,11 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-
+    <string name="button1_desc">Кнопка 1</string>
+    <string name="button2_desc">Кнопка 2</string>
+    <string name="button3_desc">Кнопка 3</string>
+    <string name="button4_desc">Кнопка 4</string>
+    <string name="button5_desc">Кнопка 5</string>
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
