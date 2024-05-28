@@ -1,0 +1,14 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape>
+            <solid android:color="?attr/colorControlHighlight" />
+            <corners android:radius="50dp" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <solid android:color="#182d40" /> <!-- Красный цвет кнопки -->
+            <corners android:radius="50dp" />
+        </shape>
+    </item>
+</selector>
