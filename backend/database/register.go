@@ -44,6 +44,7 @@ func (d *DB) Register(NewUser *Users.NewUser) (*Users.User, error) {
 	user := &Users.User{
 		Email:        NewUser.Email,
 		PasswordHash: passwordHash,
+		Hash:         authHash,
 	}
 
 	return user, nil

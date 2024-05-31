@@ -11,6 +11,10 @@ var (
 	ErrExistEmail    = errors.New("email is already busy")
 	ErrWrongPassword = errors.New("password is wrong")
 	ErrUndetected    = errors.New("Undetected error")
+	tables           = map[string]string{
+		"users":     "CREATE TABLE users (email TEXT, password_hash TEXT, hash_auth TEXT);",
+		"statistic": "CREATE TABLE statistic (hash_auth TEXT, mood SMALLINT, weather SMALLINT, whereiam SMALLINT, whom SMALLINT, comment TEXT, date TEXT);",
+	}
 )
 
 const (
@@ -60,6 +64,45 @@ func (d *DB) ExistEmail(email string) error {
 	return nil
 }
 
-func (d *DB) InitTables() {
+func (d *DB) ExistTable(table string) (bool, error) {
+	connection, err := d.Connect()
+	if err != nil {
+		return false, err
+	}
+	defer connection.Close()
 
+	query := "SELECT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name = $1);"
+	var exists bool
+	err = connection.QueryRow(query, table).Scan(&exists)
+
+	return exists, err
+}
+
+func (d *DB) CreateTable(table string) error {
+	connection, err := d.Connect()
+	if err != nil {
+		return err
+	}
+	defer connection.Close()
+
+	_ = connection.QueryRow(tables[table])
+
+	return nil
+}
+
+func (d *DB) InitTables() error {
+	for table, _ := range tables {
+		exists, err := d.ExistTable(table)
+		if err != nil {
+			return err
+		}
+		if !exists {
+			err := d.CreateTable(table)
+			fmt.Print(table)
+			if err != nil {
+				return err
+			}
+		}
+	}
+	return nil
 }

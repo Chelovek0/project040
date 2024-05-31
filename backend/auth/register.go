@@ -34,7 +34,7 @@ func Register(w http.ResponseWriter, r *http.Request) {
 		return
 	} else if err == nil {
 		w.WriteHeader(http.StatusCreated)
-		response.Hash = User.PasswordHash
+		response.Hash = User.Hash
 	} else {
 		panic(err)
 	}

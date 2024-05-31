@@ -15,7 +15,7 @@ func (d *DB) LoginViaHash(hash string) (*Users.User, error) {
 
 	err = connection.QueryRow(query, hash).Scan(&emailBD, &hashPasswordBD, &hashBD)
 	if err != nil {
-		return nil, ErrUndetected
+		return nil, err
 	}
 
 	User := &Users.User{
