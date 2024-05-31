@@ -11,7 +11,7 @@ func (d *DB) LoginViaHash(hash string) (*Users.User, error) {
 	}
 	defer connection.Close()
 
-	query := "SELECT * FROM users WHERE auth_hash = $1"
+	query := "SELECT * FROM users WHERE hash_auth = $1"
 
 	err = connection.QueryRow(query, hash).Scan(&emailBD, &hashPasswordBD, &hashBD)
 	if err != nil {

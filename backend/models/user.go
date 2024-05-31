@@ -22,7 +22,7 @@ func (u *NewUser) Valide() error {
 type User struct {
 	Email        string `json:"email" pg:"email"`
 	PasswordHash string `json:"password_hash" pg:"password_hash"`
-	Hash         string `json:"hash_auth" pg:"auth_hash"`
+	Hash         string `json:"hash_auth" pg:"hash_auth"`
 }
 
 func (u *User) Valide() error {
