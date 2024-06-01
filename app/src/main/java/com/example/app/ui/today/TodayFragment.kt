@@ -235,7 +235,7 @@ class TodayFragment : Fragment() {
         }
     }
 
-    // Method to select button and update its transparency
+
     private fun selectButton(buttons: List<ImageButton>, selectedIndex: Int?) {
         for ((index, button) in buttons.withIndex()) {
             val isSelected = index == selectedIndex
