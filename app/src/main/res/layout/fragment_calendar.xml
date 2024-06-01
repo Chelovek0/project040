@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.calendar.CalendarFragment">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/imageButtonLeft"
+            android:layout_width="20dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="3dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:contentDescription="@string/button1_desc"
+            android:scaleType="fitCenter"
+            android:src="@drawable/left_arrow" />
+
+        <TextView
+            android:id="@+id/textViewMonth"
+            android:layout_width="237dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fontFamily="@font/archivo_black"
+            android:text="TextView"
+            android:textAlignment="center"
+            android:textColor="#ACC8CD"
+            android:textSize="30sp" />
+
+        <ImageButton
+            android:id="@+id/imageButtonRight"
+            android:layout_width="20dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:contentDescription="@string/button1_desc"
+            android:scaleType="fitCenter"
+            android:src="@drawable/right_arrow" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollViewDay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="75dp"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <LinearLayout
+            android:id="@+id/linearLayoutDay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@drawable/border"/>
+            <LinearLayout
+                android:id="@+id/linearLayoutGen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textViewGen"
+                    android:layout_width="237dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="3dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/brass_mono_comfortable_regular"
+                    android:text="Ваше общее настроение:"
+                    android:textColor="#ACC8CD"
+                    android:textSize="24sp" />
+
+                <ImageView
+                    android:id="@+id/imageViewGen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_weight="30"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/nothing" />
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@drawable/border"/>
+            <LinearLayout
+                android:id="@+id/linearLayoutWeather"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textViewWeather"
+                    android:layout_width="237dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="3dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/brass_mono_comfortable_regular"
+                    android:text="Погода в этот день:"
+                    android:textColor="#ACC8CD"
+                    android:textSize="24sp" />
+
+                <ImageView
+                    android:id="@+id/imageViewWeather"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_weight="30"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/nothing" />
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@drawable/border"/>
+            <LinearLayout
+                android:id="@+id/linearLayoutPlace"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textViewPlace"
+                    android:layout_width="237dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="3dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/brass_mono_comfortable_regular"
+                    android:text="Где находились в этот день:"
+                    android:textColor="#ACC8CD"
+                    android:textSize="24sp" />
+
+                <ImageView
+                    android:id="@+id/imageViewPlace"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_weight="30"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/nothing" />
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@drawable/border"/>
+            <LinearLayout
+                android:id="@+id/linearLayoutWith"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textViewWith"
+                    android:layout_width="237dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="3dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/brass_mono_comfortable_regular"
+                    android:text="C кем были в этот день:"
+                    android:textColor="#ACC8CD"
+                    android:textSize="24sp" />
+
+                <ImageView
+                    android:id="@+id/imageViewWith"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_weight="30"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/nothing" />
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@drawable/border"/>
+
+            <LinearLayout
+                android:id="@+id/linearLayoutThinks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/textViewThinks"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="3dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/brass_mono_comfortable_regular"
+                    android:text="Ваши мысли на счёт дня:"
+                    android:textColor="#ACC8CD"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/textViewThinksN"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="3dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/brass_mono_comfortable_regular"
+                    android:text=""
+                    android:textAllCaps="false"
+                    android:textColor="#C4CBCC"
+                    android:textSize="20sp" />
+
+
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/border"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

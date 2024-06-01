@@ -5,5 +5,83 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SignIn">
+    <TextView
+        android:id="@+id/text_sign_in"
+        android:layout_width="332dp"
+        android:layout_height="82dp"
+        android:fontFamily="@font/brass_mono_comfortable_regular"
+        android:text="ВХОД"
+        android:textAlignment="center"
+        android:textColor="#F3F3F3"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.292" />
+
+    <EditText
+        android:id="@+id/email_si"
+        android:layout_width="223dp"
+        android:layout_height="50dp"
+        android:ems="10"
+        android:fontFamily="sans-serif-black"
+        android:hint="Введите email"
+        android:inputType="textEmailAddress"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_sign_in"
+        app:layout_constraintVertical_bias="0.161" />
+
+    <EditText
+        android:id="@+id/pass_si"
+        android:layout_width="223dp"
+        android:layout_height="50dp"
+        android:ems="10"
+        android:hint="Введите пароль"
+        android:inputType="textPassword"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_si"
+        app:layout_constraintVertical_bias="0.044" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_si"
+        android:layout_width="222dp"
+        android:layout_height="83dp"
+        android:backgroundTint="#182d40"
+        android:text="ВОЙТИ"
+        android:textAlignment="center"
+        android:textColor="#F3F3F3"
+        android:textSize="20sp"
+        android:background="@drawable/rounded_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pass_si"
+        app:layout_constraintVertical_bias="0.656" />
+
+    <TextView
+        android:id="@+id/llink"
+        android:layout_width="225dp"
+        android:layout_height="40dp"
+        android:fontFamily="@font/brass_mono_comfortable_regular"
+        android:text="ЗАРЕГИСТРИРОВАТЬСЯ"
+        android:textAlignment="center"
+        android:textColor="#978080"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_si"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pass_si"
+        app:layout_constraintVertical_bias="0.21" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

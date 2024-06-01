@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".ui.today.TodayFragment">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/archivo_black"
+        android:text="Как твой день?"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="540dp"
+        android:layout_marginTop="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+        <LinearLayout
+            android:id="@+id/linearLayoutMM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints">
+            <LinearLayout
+                android:id="@+id/linearLayoutWeather3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="@drawable/day_back"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/textViewWeather3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:fontFamily="@font/brass_mono_comfortable_regular"
+                    android:text="Что вы можете себе сказать?"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/editTextThinks"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginTop="2dp"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:text="" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/linearLayoutGeneral"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="@drawable/day_back"
+                android:orientation="vertical"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/textViewGen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:fontFamily="@font/brass_mono_comfortable_regular"
+                    android:text="Общие ощущения от текущего дня?"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutGen"
+                    android:layout_width="300dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    tools:ignore="MissingConstraints,UselessParent">
+
+                    <ImageButton
+                        android:id="@+id/imageButtonGenTer"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:contentDescription="@string/button1_desc"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/terrible" />
+
+                    <ImageButton
+                        android:id="@+id/imageButtonGenSad"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:contentDescription="@string/button2_desc"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/sad" />
+
+                    <ImageButton
+                        android:id="@+id/imageButtonGenSo"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:contentDescription="@string/button3_desc"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/soso" />
+
+                    <ImageButton
+                        android:id="@+id/imageButtonGenGood"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:contentDescription="@string/button4_desc"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/good" />
+
+                    <ImageButton
+                        android:id="@+id/imageButtonGenHappy"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:contentDescription="@string/button5_desc"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/happy" />
+
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/linearLayoutWeather"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="@drawable/day_back"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/textViewWeather"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:fontFamily="@font/brass_mono_comfortable_regular"
+                    android:text="Какая сегодня погода?"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutWther"
+                    android:layout_width="300dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    tools:ignore="MissingConstraints,UselessParent">
+
+                    <ImageButton
+                        android:id="@+id/imageButtonWeatherLight"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:contentDescription="@string/button1_desc"
+                        android:scaleType="fitCenter"
+                        android:layout_marginHorizontal="5dp"
+                        android:src="@drawable/lighting" />
+
+                    <ImageButton
+                        android:id="@+id/imageButtonWeatherRain"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:contentDescription="@string/button2_desc"
+                        android:scaleType="fitCenter"
+                        android:layout_marginHorizontal="5dp"
+                        android:src="@drawable/rain" />
+
+                    <ImageButton
+                        android:id="@+id/imageButtonWeatherSnow"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:contentDescription="@string/button3_desc"
+                        android:scaleType="fitCenter"
+                        android:layout_marginHorizontal="5dp"
+                        android:src="@drawable/snowy" />
+
+                    <ImageButton
+                        android:id="@+id/imageButtonWeatherCloud"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:contentDescription="@string/button4_desc"
+                        android:scaleType="fitCenter"
+                        android:layout_marginHorizontal="5dp"
+                        android:src="@drawable/cloudy" />
+
+                    <ImageButton
+                        android:id="@+id/imageButtonWeatherSun"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:contentDescription="@string/button5_desc"
+                        android:scaleType="fitCenter"
+                        android:layout_marginHorizontal="5dp"
+                        android:src="@drawable/sunny" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/linearLayoutPlaces"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="@drawable/day_back"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/textViewPlaces"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:fontFamily="@font/brass_mono_comfortable_regular"
+                    android:text="Где ты провел основное время?"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutPlace"
+                    android:layout_width="300dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    tools:ignore="MissingConstraints,UselessParent">
+
+                    <ImageButton
+                        android:id="@+id/imageButtonPlacePlane"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:contentDescription="@string/button1_desc"
+                        android:scaleType="fitCenter"
+                        android:layout_marginHorizontal="5dp"
+                        android:src="@drawable/plane" />
+
+                    <ImageButton
+                        android:id="@+id/imageButtonPlaceShop"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:contentDescription="@string/button2_desc"
+                        android:scaleType="fitCenter"
+                        android:layout_marginHorizontal="5dp"
+                        android:src="@drawable/shop" />
+
+                    <ImageButton
+                        android:id="@+id/imageButtonPlaceWork"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:contentDescription="@string/button3_desc"
+                        android:scaleType="fitCenter"
+                        android:layout_marginHorizontal="5dp"
+                        android:src="@drawable/work" />
+
+                    <ImageButton
+                        android:id="@+id/imageButtonPlaceNature"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:contentDescription="@string/button4_desc"
+                        android:scaleType="fitCenter"
+                        android:layout_marginHorizontal="5dp"
+                        android:src="@drawable/nature" />
+
+                    <ImageButton
+                        android:id="@+id/imageButtonPlaceHome"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:contentDescription="@string/button5_desc"
+                        android:scaleType="fitCenter"
+                        android:layout_marginHorizontal="5dp"
+                        android:src="@drawable/home" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/linearLayoutWith"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="@drawable/day_back"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/textViewWith"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:fontFamily="@font/brass_mono_comfortable_regular"
+                    android:text="С кем ты повёл день??"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutWwith"
+                    android:layout_width="300dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    tools:ignore="MissingConstraints,UselessParent">
+
+                    <ImageButton
+                        android:id="@+id/imageButtonWithAlone"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:contentDescription="@string/button1_desc"
+                        android:scaleType="fitCenter"
+                        android:layout_marginHorizontal="5dp"
+                        android:src="@drawable/alone" />
+
+                    <ImageButton
+                        android:id="@+id/imageButtonWithWork"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:contentDescription="@string/button2_desc"
+                        android:scaleType="fitCenter"
+                        android:layout_marginHorizontal="5dp"
+                        android:src="@drawable/wwork" />
+
+                    <ImageButton
+                        android:id="@+id/imageButtonWithFriend"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:contentDescription="@string/button3_desc"
+                        android:scaleType="fitCenter"
+                        android:layout_marginHorizontal="5dp"
+                        android:src="@drawable/friends" />
+
+                    <ImageButton
+                        android:id="@+id/imageButtonWithFamily"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:contentDescription="@string/button4_desc"
+                        android:scaleType="fitCenter"
+                        android:layout_marginHorizontal="5dp"
+                        android:src="@drawable/family" />
+
+                    <ImageButton
+                        android:id="@+id/imageButtonWithLove"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:contentDescription="@string/button5_desc"
+                        android:scaleType="fitCenter"
+                        android:layout_marginHorizontal="5dp"
+                        android:src="@drawable/love" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonSave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="85dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_button"
+                android:fontFamily="@font/brass_mono_comfortable_regular"
+                android:text="Сохранить"
+                android:textColor="#E6CFCF"
+                android:backgroundTint="#182d40"/>
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
