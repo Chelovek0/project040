@@ -14,27 +14,27 @@ class TodayViewModel : ViewModel() {
     val selectedGenButtonIndex: LiveData<Int?> get() = _selectedGenButtonIndex
 
     private val _selectedWeatherButtonIndex = MutableLiveData<Int?>()
-
     val selectedWeatherButtonIndex: LiveData<Int?> get() = _selectedWeatherButtonIndex
 
     private val _selectedPlaceButtonIndex = MutableLiveData<Int?>()
-
     val selectedPlaceButtonIndex: LiveData<Int?> get() = _selectedPlaceButtonIndex
 
     private val _selectedWithButtonIndex = MutableLiveData<Int?>()
-
     val selectedWithButtonIndex: LiveData<Int?> get() = _selectedWithButtonIndex
+
     fun setSelectedGenButtonIndex(index: Int) {
-        _selectedGenButtonIndex.value = index
+        _selectedGenButtonIndex.postValue(index)
     }
 
     fun setSelectedWeatherButtonIndex(index: Int) {
-        _selectedWeatherButtonIndex.value = index
+        _selectedWeatherButtonIndex.postValue(index)
     }
+
     fun setSelectedPlaceButtonIndex(index: Int) {
-        _selectedPlaceButtonIndex.value = index
+        _selectedPlaceButtonIndex.postValue(index)
     }
+
     fun setSelectedWithButtonIndex(index: Int) {
-        _selectedWithButtonIndex.value = index
+        _selectedWithButtonIndex.postValue(index)
     }
 }

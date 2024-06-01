@@ -10,7 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import android.os.Handler
 import android.os.Looper
-
+import androidx.appcompat.widget.AppCompatButton
 class SignIn : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +20,7 @@ class SignIn : AppCompatActivity() {
         val userEmail: EditText = findViewById(R.id.email_si)
         val userPass: EditText = findViewById(R.id.pass_si)
         val move: TextView = findViewById(R.id.llink)
-        val buttonSi: Button = findViewById(R.id.button_si)
+        val buttonSi: AppCompatButton = findViewById(R.id.button_si)
 
         move.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
@@ -37,9 +37,8 @@ class SignIn : AppCompatActivity() {
                 val user = User(email, pass)
                 user.sendPostLog(email, pass) {response ->
                     val hash = response[0]
-                    val code = response[1]
                     println("Response: $hash")
-                    println("$code")
+
                     if(response[1] == "1"){
 
                         val hash_saver = this.getSharedPreferences("hash", Context.MODE_PRIVATE)!!
@@ -50,6 +49,7 @@ class SignIn : AppCompatActivity() {
 
                         val intent = Intent(this, MainActivity2::class.java)
                         startActivity(intent)
+                        finish()
                     }
                 }
             }

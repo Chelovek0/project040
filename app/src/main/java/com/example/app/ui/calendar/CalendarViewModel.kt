@@ -1,13 +1,22 @@
 package com.example.app.ui.calendar
 
-import androidx.lifecycle.LiveData
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import java.time.LocalDate
 
-class CalendarViewModel : ViewModel() {
+class CalendarViewModel(application: Application) : AndroidViewModel(application) {
+    val date = MutableLiveData<LocalDate>()
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
+    init {
+        date.value = LocalDate.now() // Установите начальное значение даты
     }
-    val text: LiveData<String> = _text
+
+    fun setDate(newDate: LocalDate) {
+        date.value = newDate
+    }
+
+    fun setDataFromServer(response: Array<String>) {
+        // Обработка данных с сервера
+    }
 }

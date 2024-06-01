@@ -24,8 +24,7 @@ class MainActivity2 : AppCompatActivity() {
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main2)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_today, R.id.navigation_calendar, R.id.navigation_profile
@@ -34,15 +33,18 @@ class MainActivity2 : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+        // Проверка SharedPreferences на наличие хэша
         val sharedPref = this.getSharedPreferences("hash", Context.MODE_PRIVATE)
         val hash_value = sharedPref.getString("hash", "")
-        if (hash_value == ""){
 
+        // Если хэша нет, перенаправляем на MainActivity
+        if (hash_value == "") {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-
+            finish() // Закрываем MainActivity2, чтобы пользователь не мог вернуться назад
         }
-
     }
 
 }
+
+

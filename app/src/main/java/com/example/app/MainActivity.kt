@@ -10,8 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import android.os.Handler
 import android.os.Looper
-
-
+import androidx.appcompat.widget.AppCompatButton
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,16 +19,11 @@ class MainActivity : AppCompatActivity() {
         val userEmail: EditText = findViewById(R.id.email_reg)
         val userPass1: EditText = findViewById(R.id.pass1_reg)
         val userPass2: EditText = findViewById(R.id.pass2_reg)
-        val buttonReg: Button = findViewById(R.id.button_reg)
+        val buttonReg: AppCompatButton = findViewById(R.id.button_reg)
         val move: TextView = findViewById(R.id.link_text)
-        val mm: TextView = findViewById(R.id.llink)
 
         move.setOnClickListener {
             val intent = Intent(this, SignIn::class.java)
-            startActivity(intent)
-        }
-        mm.setOnClickListener {
-            val intent = Intent(this, MainActivity2::class.java)
             startActivity(intent)
         }
 
@@ -50,27 +44,30 @@ class MainActivity : AppCompatActivity() {
                     println("Response: $hash")
 
                     if(response[1] == "1"){
-
+                        // Сохраняем хэш в SharedPreferences
                         val hash_saver = this.getSharedPreferences("hash", Context.MODE_PRIVATE)
                         val saver = hash_saver.edit()
                         saver.putString("hash", response[0])
                         saver.apply()
 
-
+                        // Переходим на MainActivity2
                         val intent = Intent(this, MainActivity2::class.java)
                         startActivity(intent)
+                        finish() // Закрываем MainActivity, чтобы пользователь не мог вернуться назад
                     }
-                    // Дополнительная логика по обработке ответа
                 }
             }
 
         }
 
     }
+
+    // Метод для обработки двойного нажатия на кнопку "Назад"
     private var doubleBackToExitPressedOnce = false
     override fun onBackPressed() {
         if (doubleBackToExitPressedOnce) {
             super.onBackPressed()
+            finishAffinity()
             finishAffinity()
         }
 
@@ -81,5 +78,4 @@ class MainActivity : AppCompatActivity() {
             doubleBackToExitPressedOnce = false
         }, 2000)
     }
-
 }

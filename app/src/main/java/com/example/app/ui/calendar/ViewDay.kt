@@ -8,51 +8,13 @@ import okhttp3.Request
 import okhttp3.RequestBody
 import okhttp3.Response
 import org.json.JSONObject
-import java.io.IOException
-import com.google.gson.Gson
 import com.google.gson.JsonParser
+import java.io.IOException
 import java.io.StringReader
 import com.google.gson.stream.JsonReader
 
-
-class SaveDay(val hash_val: String?, val thinks: String?, val gen: Int, val weather: Int, val place: Int, val with: Int, val nowDate:String) {
-    fun sendDay(hash_val: String?,thinks: String?, gen: Int, weather: Int, place: Int, with: Int, nowDate: String, callback: (Boolean) -> Unit) {
-        val url = "http://platwa-server.ru:32673/info/set"
-        val client = OkHttpClient()
-
-        val js_day = JSONObject().apply {
-            put("hash_auth", hash_val)
-            put("date", nowDate)
-            put("mood", gen)
-            put("weather", weather)
-            put("whereiam", place)
-            put("whom", with)
-            put("comment", thinks)
-        }
-
-        val requestBody: RequestBody = RequestBody.create("application/json".toMediaTypeOrNull(), js_day.toString())
-
-        val request: Request = Request.Builder()
-            .url(url)
-            .post(requestBody)
-            .build()
-
-        client.newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-                println(e.message)
-//                val resp = arrayOf("${e.message}","0")
-                callback(false)
-
-            }
-
-            override fun onResponse(call: Call, response: Response) {
-                val resp: String = response.body?.string() ?: "Empty response"
-                println(resp)
-                callback(true)
-            }
-        })
-    }
-    fun date(hash_val: String?, nowDate: String, callback: (Array<String>) -> Unit) {
+class ViewDay(val hash_val: String?, val nowDate: String) {
+    fun getDate(hash_val: String?, nowDate: String, callback: (Array<String>) -> Unit) {
         val url = "http://platwa-server.ru:32673/info/get"
         val client = OkHttpClient()
 

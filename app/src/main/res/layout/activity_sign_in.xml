@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back"
     tools:context=".SignIn">
     <TextView
         android:id="@+id/text_sign_in"
@@ -53,15 +52,16 @@
         app:layout_constraintTop_toBottomOf="@+id/email_si"
         app:layout_constraintVertical_bias="0.044" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_si"
         android:layout_width="222dp"
         android:layout_height="83dp"
-        android:backgroundTint="#9990C8"
+        android:backgroundTint="#182d40"
         android:text="ВОЙТИ"
         android:textAlignment="center"
         android:textColor="#F3F3F3"
         android:textSize="20sp"
+        android:background="@drawable/rounded_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
